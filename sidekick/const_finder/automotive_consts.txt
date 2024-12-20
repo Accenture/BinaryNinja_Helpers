@@ -1,0 +1,83 @@
+{
+    "UDS Access Denied/Not supported in active session": {
+        0x33: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        },
+        0x7E: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        }
+    },
+    "UDS Invalid Key/Exceeded Attempts": {
+        0x35: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        },
+        0x36: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        }
+    },
+    "UDS Invalid Key/Exceeded Attempts/Time not Expired": {
+        0x35: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        },
+        0x36: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        },
+        0x37: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        }
+    },
+    "UDS Access Denied/Out-of-Range": {
+        0x33: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        },
+        0x31: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        }
+    },
+    "UDS Time not expired/Sequence Error": {
+        0x37: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        },
+        0x24: {
+            "type_of_use": ASSIGNMENTS + CALLS,
+            "direct_use_only": True
+        }
+    },
+    "XCP Out of Range": {
+        0x22: {
+            "type_of_use": CALLS,
+            "direct_use_only": True
+        }
+    },
+    "XCP Out of Range - asg": {
+        0x22: {
+            "type_of_use": ASSIGNMENTS,
+            "direct_use_only": True
+        },
+        0xFE: {
+            "type_of_use": ASSIGNMENTS,
+            "direct_use_only": True
+        }
+    },
+    "XCP Error Set": {
+        0x2: {
+            "type_of_use": ASSIGNMENTS,
+            "direct_use_only": True
+        },
+        0xFE: {
+            "type_of_use": ASSIGNMENTS,
+            "direct_use_only": True
+        }
+    },
+
+}
