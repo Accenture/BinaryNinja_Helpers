@@ -17,17 +17,17 @@ if segment_choice != None:
                 bv.define_user_data_var(raw_ptr[0],"void*")
             index.add_entry(bv.get_data_var_at(raw_ptr[0]),{"XREF Type": "Raw pointer address"})
             addr_refs += 1
-        for current_address in range(start_addr,end_addr,bv.arch.instr_alignment):
-            notify_progress(current_address - start_addr, end_addr - start_addr, 'Trying to find unknown XREFs')
-            if not bv.get_functions_containing(current_address):
-                data = bv.read(current_address,bv.arch.max_instr_length if bv.arch.max_instr_length >= 4 else 4)
-                instruction = bv.arch.get_instruction_info(data,current_address)
+        for curr_address in range(start_addr,end_addr,bv.arch.instr_alignment):
+            notify_progress(curr_address - start_addr, end_addr - start_addr, 'Trying to find unknown XREFs')
+            if not bv.get_functions_containing(curr_address):
+                data = bv.read(curr_address,bv.arch.max_instr_length if bv.arch.max_instr_length >= 4 else 4)
+                instruction = bv.arch.get_instruction_info(data,curr_address)
                 if instruction:
                     for branch in instruction.branches:
                         if branch.target == target_func_addr:
-                            bv.define_user_data_var(current_address,"uint32_t")
-                            index.add_entry(bv.get_data_var_at(current_address),{"XREF Type": "Call instruction"})
-                            #log_info(f"GOT CALL TO FUNC THAT IS NOT RECOGNIZED @ {hex(current_address)}")
+                            bv.define_user_data_var(curr_address,"uint32_t")
+                            index.add_entry(bv.get_data_var_at(curr_address),{"XREF Type": "Call instruction"})
+                            #log_info(f"GOT CALL TO FUNC THAT IS NOT RECOGNIZED @ {hex(curr_address)}")
                             total_calls += 1
 
     print(f"New calls discovered: {total_calls}")
