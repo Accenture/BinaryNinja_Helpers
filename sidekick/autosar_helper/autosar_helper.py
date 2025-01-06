@@ -220,7 +220,7 @@ class AutoFindErrorHandling():
     def find_det_error_function(self):
         f_count = 1
         previous_type = None
-        SKIP_TRESHOLD = int(len(list(self.bv.functions)) / 40)
+        SKIP_TRESHOLD = 50
         print(SKIP_TRESHOLD)
         for func in self.bv.functions:
             notify_progress(f_count, len(bv.functions), 'Trying to find the AUTOSAR error handling functions ...')
