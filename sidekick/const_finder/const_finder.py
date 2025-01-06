@@ -11,6 +11,7 @@ FLOAT_COMPARE = [HighLevelILOperation.HLIL_FCMP_E,HighLevelILOperation.HLIL_FCMP
 MATH = [HighLevelILOperation.HLIL_ADD, HighLevelILOperation.HLIL_ADC, HighLevelILOperation.HLIL_SUB, HighLevelILOperation.HLIL_SBB, HighLevelILOperation.HLIL_AND, HighLevelILOperation.HLIL_OR, HighLevelILOperation.HLIL_XOR, HighLevelILOperation.HLIL_LSL, HighLevelILOperation.HLIL_LSR,HighLevelILOperation.HLIL_ASR,HighLevelILOperation.HLIL_ROL,HighLevelILOperation.HLIL_RLC,HighLevelILOperation.HLIL_ROR, HighLevelILOperation.HLIL_RRC,HighLevelILOperation.HLIL_MUL,HighLevelILOperation.HLIL_MULU_DP,HighLevelILOperation.HLIL_MULS_DP,HighLevelILOperation.HLIL_DIVU,HighLevelILOperation.HLIL_DIVU_DP,HighLevelILOperation.HLIL_DIVS,HighLevelILOperation.HLIL_DIVS_DP,HighLevelILOperation.HLIL_MODU,HighLevelILOperation.HLIL_MODU_DP,HighLevelILOperation.HLIL_MODS,HighLevelILOperation.HLIL_MODS_DP,HighLevelILOperation.HLIL_NEG,HighLevelILOperation.HLIL_NOT]
 FLOAT_MATH = [HighLevelILOperation.HLIL_FADD,HighLevelILOperation.HLIL_FSUB,HighLevelILOperation.HLIL_FMUL,HighLevelILOperation.HLIL_FDIV,HighLevelILOperation.HLIL_FSQRT,HighLevelILOperation.HLIL_FNEG,HighLevelILOperation.HLIL_FABS]
 ARRAY_INDEX = [HighLevelILOperation.HLIL_ARRAY_INDEX]
+RETURN = [HighLevelILOperation.HLIL_RET]
 ANY = list(HighLevelILOperation)
 
 
