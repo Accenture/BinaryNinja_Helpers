@@ -124,10 +124,14 @@ class MarkErrorHandlingFunc():
         for call_insn in caller_sites:
             notify_progress(f_count, len(caller_sites), 'Renaming functions ...')
             f_count += 1
-            if call_insn.hlil:
-                call_params = self.get_call_params(current_func,call_insn.hlil)
-            else:
-                call_params = self.get_call_params(current_func,self.find_call_insn(call_insn,"Det_ReportError"))
+            try:
+                if call_insn.hlil:
+                    call_params = self.get_call_params(current_func,call_insn.hlil)
+                else:
+                    call_params = self.get_call_params(current_func,self.find_call_insn(call_insn,"Det_ReportError"))
+            except (exceptions.ILException, AssertionError, IndexError):
+                print(f"[AUTOSAR Helper] Got IL Excpetion for {hex(call_insn.address)}. You may want to force the analysis for this function.")
+                continue
             if call_params:
                 if str(call_params[MODULE_ID_INDEX].value.value) in self.autosar_functions:
                     # Module exists
