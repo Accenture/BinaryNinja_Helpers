@@ -11,6 +11,7 @@ This is a collection of scripts that can be used with snippets and sidekick plug
 * [Const Finder](./sidekick/const_finder/) - Indexer that can be used to find constants in the HLIL representaion that match specified criteria.
 * [Function Finder](./sidekick/function_finder/) - Is useful when you suspect that a a lot of actual code was not detected by the analysis. This will try to find cross-refernces to the current function in the binary that are not associated with a function. Rare, but sometimes useful.
 * [Kernel Symbols Import](./sidekick/kernel_symbols/) - Imports symbols from the `kallsyms` file.
+* [Make Function Pointers](./sidekick/make_function_pointers/) - Finds all hadcoded XREFs in the seelcted segment that may lead to functions.
 * [Security Scanner](./sidekick/security_scanner/) - Script that will create Index with all potenially locations that may be subjects to interesting memory corruption issues. Use this in large binaries to filter out uninteresting points such as XREFs to `strcpy` that have static source operand.
 
 ### Snippets Files
