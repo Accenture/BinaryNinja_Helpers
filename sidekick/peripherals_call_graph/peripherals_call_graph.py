@@ -35,8 +35,6 @@ def make_simple_call_graph(root_node,root_function,nodes):
             ]
             new_node.graph_view_node = xref_graph_node
             dumb_graph_nodes.append(new_node)
-            #graph_view.append(xref_graph_node)
-            #root_node.add_outgoing_edge(BranchType.UnconditionalBranch,xref_graph_node)
             make_simple_call_graph(new_node,xref_to_func.function,nodes.copy())
 
 def connect_graph_names_only(graph_view):
@@ -93,8 +91,6 @@ if section_choice != None:
                 root_node.graph_view_node = current_graph_node
                 # Add node
                 dumb_graph_nodes.append(root_node)
-                #graph_view.append(current_graph_node)
-
                 marked_funcs = []
                 for code_ref in data_variable.code_refs:
                     if code_ref.function.name in marked_funcs:
