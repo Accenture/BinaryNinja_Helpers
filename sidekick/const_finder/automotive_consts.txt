@@ -79,7 +79,6 @@
             "direct_use_only": True
         }
     },
-    {
     "XCP Rx Indication": {
         0xff: {
             "type_of_use": ARRAY_INDEX,

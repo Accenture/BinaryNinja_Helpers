@@ -1423,6 +1423,10 @@ typedef uint8 EcuM_ResetType;
 
 typedef uint8 EcuM_StateType;
 
+typedef uint16 EcuM_ShutdownModeType;
+
+typedef uint8 EcuM_ShutdownTargetType;
+
 //[*] Extracted 52 items.
 
 //====================================================================================================

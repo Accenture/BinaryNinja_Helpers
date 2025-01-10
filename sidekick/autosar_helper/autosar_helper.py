@@ -23,7 +23,7 @@ class PopulateASClassicTypes():
 
     def populate_types(self):
         try:
-            result = requests.get("http://127.0.0.1:8000/autosar.h")
+            result = requests.get("https://raw.githubusercontent.com/Accenture/BinaryNinja_Helpers/refs/heads/main/sidekick/autosar_helper/autosar.h")
             if result.status_code == 200:
                 tps = self.bv.platform.parse_types_from_source(result.text)
                 self.bv.define_user_types([(x,tps.types[x]) for x in tps.types],self.echo_progress)
@@ -91,7 +91,7 @@ class MarkErrorHandlingFunc():
 
     def start(self):
         try:
-            result = requests.get("http://127.0.0.1:8000/autosar.json",timeout=2)
+            result = requests.get("https://raw.githubusercontent.com/Accenture/BinaryNinja_Helpers/refs/heads/main/sidekick/autosar_helper/autosar.json",timeout=2)
             if result.status_code == 200:
                 self.autosar_functions = json.loads(result.text)
                 self.rename_functions()
@@ -113,25 +113,25 @@ class MarkErrorHandlingFunc():
 
     def rename_functions(self):
         f_count = 1
-        current_func = self.bv.get_functions_containing(self.current_address)[0]
-        current_func.set_user_type(self.det_error_type)
-        current_func.name = "Det_ReportError"
-        current_func.mark_caller_updates_required()
-        current_func.reanalyze()
+        current_function.set_user_type(self.det_error_type)
+        current_function.name = "Det_ReportError"
+        current_function.mark_caller_updates_required()
+        current_function.reanalyze()
         while self.bv.analysis_progress.state != 2:
             pass
-        caller_sites = list(current_func.caller_sites)
+        caller_sites = list(current_function.caller_sites)
         for call_insn in caller_sites:
             notify_progress(f_count, len(caller_sites), 'Renaming functions ...')
             f_count += 1
             try:
                 if call_insn.hlil:
-                    call_params = self.get_call_params(current_func,call_insn.hlil)
+                    call_params = self.get_call_params(current_function,call_insn.hlil)
                 else:
-                    call_params = self.get_call_params(current_func,self.find_call_insn(call_insn,"Det_ReportError"))
+                    call_params = self.get_call_params(current_function,self.find_call_insn(call_insn,"Det_ReportError"))
             except (exceptions.ILException, AssertionError, IndexError):
-                print(f"[AUTOSAR Helper] Got IL Excpetion for {hex(call_insn.address)}. You may want to force the analysis for this function.")
-                continue
+                print(f"[AUTOSAR Helper] Got IL Exception for {hex(call_insn.address)}. You may want to force the analysis for this function.")
+            except Exception as e:
+                print(f"Compeltely different error: {e}")
             if call_params:
                 if str(call_params[MODULE_ID_INDEX].value.value) in self.autosar_functions:
                     # Module exists
@@ -157,7 +157,6 @@ class AutoFindErrorHandling():
         self.bv = bv
         self.current_top = None
         self.autosar_functions = None
-        #self.filename = "autosar.json"
         if bv.arch.name == "tricore":
             self.det_error_type = "unsigned char Det_ReportError(unsigned short ModuleId @ d4, unsigned char InstanceId @ d5, unsigned char ApiId @d6, unsigned char ErrorId @d7)"
         else:
@@ -203,7 +202,7 @@ class AutoFindErrorHandling():
 
     def start(self):
         try:
-            result = requests.get("http://127.0.0.1:8000/autosar.json",timeout=2)
+            result = requests.get("https://raw.githubusercontent.com/Accenture/BinaryNinja_Helpers/refs/heads/main/sidekick/autosar_helper/autosar.json",timeout=2)
             if result.status_code == 200:
                 self.autosar_functions = json.loads(result.text)
                 rename = self.find_det_error_function()
@@ -261,7 +260,7 @@ class AutoFindErrorHandling():
                             #matches.append({"match_insn":call_insn.address, "matched_func":matched_func})
                             matches[call_insn.address] = {"matched_func":matched_func, "call_params": call_params.copy()}
                 except (exceptions.ILException, AssertionError, IndexError):
-                    print(f"[AUTOSAR Helper] Got IL Excpetion for {hex(call_insn.address)}. You may want to force the analysis for this function.")
+                    print(f"[AUTOSAR Helper] Got IL Exception for {hex(call_insn.address)}. You may want to force the analysis for this function.")
             if not self.current_top:
                 self.current_top = {"function": func, "matches": matches.copy(), "previous_type": previous_type, "const_param_ratio": const_params_counter/len(list(func.caller_sites)),"matches_ratio": len(matches)/len(list(func.caller_sites))}
             elif len(matches) > len(self.current_top["matches"]):
@@ -349,9 +348,10 @@ match interaction.get_choice_input("What should I do?", "AUTOSAR Helper", ["Load
         rename_helper.start()
         print("[AUTOSAR Helper] Scanning for AUTOSAR error handling - DONE")
     case 2:
-        print(f"[AUTOSAR Helper] [AUTOSAR Helper] Setting function at {hex(current_function.start)} as 'Det_ReportError' - START")
+        print(f"[AUTOSAR Helper] Setting function at {hex(current_function.start)} as 'Det_ReportError' - START")
         rename_helper = MarkErrorHandlingFunc(bv,current_function.start)
         rename_helper.start()
-        print(f"[AUTOSAR Helper] [AUTOSAR Helper] Setting function at {hex(current_function.start)} as 'Det_ReportError' - DONE")
+        print(f"[AUTOSAR Helper] Setting function at {hex(current_function.start)} as 'Det_ReportError' - DONE")
+        print(f"[AUTOSAR Helper] Note: If there are some functions that were not renamed, re-run this operation again :)")
     case _:
         print("[AUTOSAR Helper] No choice selected.")
