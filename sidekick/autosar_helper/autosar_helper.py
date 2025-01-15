@@ -129,7 +129,7 @@ class MarkErrorHandlingFunc():
                 else:
                     call_params = self.get_call_params(current_function,self.find_call_insn(call_insn,"Det_ReportError"))
             except (exceptions.ILException, AssertionError, IndexError):
-                print(f"[AUTOSAR Helper] Got IL Exception for {hex(call_insn.address)}. You may want to force the analysis for this function.")
+                log_warn(f"[AUTOSAR Helper] Got IL Exception for {hex(call_insn.address)}. You may want to force the analysis for this function.")
             except Exception as e:
                 print(f"Compeltely different error: {e}")
             if call_params:
@@ -260,12 +260,12 @@ class AutoFindErrorHandling():
                             #matches.append({"match_insn":call_insn.address, "matched_func":matched_func})
                             matches[call_insn.address] = {"matched_func":matched_func, "call_params": call_params.copy()}
                 except (exceptions.ILException, AssertionError, IndexError):
-                    print(f"[AUTOSAR Helper] Got IL Exception for {hex(call_insn.address)}. You may want to force the analysis for this function.")
+                    log_warn(f"[AUTOSAR Helper] Got IL Exception for {hex(call_insn.address)}. You may want to force the analysis for this function.")
             if not self.current_top:
                 self.current_top = {"function": func, "matches": matches.copy(), "previous_type": previous_type, "const_param_ratio": const_params_counter/len(list(func.caller_sites)),"matches_ratio": len(matches)/len(list(func.caller_sites))}
             elif len(matches) > len(self.current_top["matches"]):
                 # Restore previosu func type
-                print(f"[AUTOSAR Helper] GOT NEW TOP {len(matches)} vs {len(self.current_top['matches'])}")
+                print(f"[AUTOSAR Helper] Got potential candiate ({func.name}) with {len(matches)} vs. {len(self.current_top['matches'])}")
                 self.current_top["function"].type = self.current_top["previous_type"]
                 self.current_top["function"].mark_caller_updates_required()
                 self.current_top['function'].reanalyze()
