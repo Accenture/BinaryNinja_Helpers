@@ -141,6 +141,10 @@ class MarkErrorHandlingFunc():
                         func_to_rename = self.bv.get_functions_containing(call_insn.address)[0]
                         func_to_rename.name = self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['name']
                         func_to_rename.comment = self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['comments']
+                        try:
+                            func_to_rename.set_user_type(self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['type'])
+                        except:
+                            print(f"[AUTOSAR Helper] FAILED TO APPLY TYPE FOR: {func_to_rename.name} at {hex(func_to_rename.start)} ({self.current_top['matches'][call_insn.address]['matched_func']['type']})")
                     else:
                         for func_to_rename in self.bv.get_functions_containing(call_insn.address):
                             func_to_rename.name = f"{self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]['short_name']}_func_{hex(call_params[SERVICE_ID_INDEX].value.value)}"
@@ -333,10 +337,132 @@ class AutoFindErrorHandling():
                     print(f"[AUTOSAR Helper] FAILED TO APPLY TYPE FOR: {func_to_rename.name} at {hex(func_to_rename.start)} ({self.current_top['matches'][call_insn.address]['matched_func']['type']})")
 
 
+class MarkReadWriteFuncs:
+    def __init__(self,bv):
+        self.bv = bv
+        self.func_list = [
+            "Adc_ReadGroup",
+            "BndM_WriteBlock_BlockId_Shortname",
+            "Xxx_BndMWriteStartFinish",
+            "Xxx_BndMWriteBlockFinish",
+            "Xxx_BndMWriteFinalizeFinish",
+            "Can_Write",
+            "CanIf_ReadRxPduData",
+            "CanIf_ReadTxNotifStatus",
+            "CanIf_ReadRxNotifStatus",
+            "CanTrcv_ReadTrcvTimeoutFlag",
+            "CanTrcv_ReadTrcvSilenceFlag",
+            "CanTp_ReadParameter",
+            "CanXL_Write",
+            "ComM_ReadInhibitCounter",
+            "Crypto_vi_ai_NvBlock_ReadFrom_NvBlock",
+            "Crypto_vi_ai_NvBlock_WriteTo_NvBlock",
+            "Dcm_BndMWriteBlockFinish",
+            "Xxx_ReadDidData",
+            "Dcm_ProcessTransferDataRead",
+            "Dcm_ProcessTransferDataWrite",
+            "Xxx_ReadData",
+            "Xxx_ReadData",
+            "Xxx_ReadData",
+            "Xxx_ReadData",
+            "Xxx_WriteData",
+            "Xxx_WriteData",
+            "Xxx_WriteData",
+            "Xxx_WriteData",
+            "Xxx_WriteDidData",
+            "Xxx_ReadDidRangeDataLength",
+            "Dem_DcmReadDataOfPID01",
+            "Dem_DcmReadDataOfPID1C",
+            "Dem_DcmReadDataOfPID21",
+            "Dem_DcmReadDataOfPID30",
+            "Dem_DcmReadDataOfPID31",
+            "Dem_DcmReadDataOfPID41",
+            "Dem_DcmReadDataOfPID4D",
+            "Dem_DcmReadDataOfPID4E",
+            "Dem_DcmReadDataOfPID91",
+            "Dem_DcmReadDataOfOBDFreezeFrame",
+            "Dem_DcmReadDataOfPIDF501",
+            "Dem_J1939DcmReadDiagnosticReadiness1",
+            "Dem_J1939DcmReadDiagnosticReadiness2",
+            "Dem_J1939DcmReadDiagnosticReadiness3",
+            "Dem_ReadDataOfPID01",
+            "Ea_Read",
+            "Ea_Write",
+            "Eep_Read",
+            "Eep_Write",
+            "Eth_WriteMii",
+            "Eth_ReadMii",
+            "EthIf_WritePortMirrorConfiguration",
+            "EthIf_ReadPortMirrorConfiguration",
+            "EthSwt_ReadTrcvRegister",
+            "EthSwt_WriteTrcvRegister",
+            "EthSwt_WritePortMirrorConfiguration",
+            "EthSwt_ReadPortMirrorConfiguration",
+            "EthTrcv_ReadMiiIndication",
+            "EthTrcv_WriteMiiIndication",
+            "Fls_Write",
+            "Fls_Read",
+            "Fee_Read",
+            "Fee_Write",
+            "Fr_ReadCCConfig",
+            "FrIf_ReadCCConfig",
+            "MemIf_Read",
+            "MemIf_Write",
+            "MemAcc_Read",
+            "MemAcc_Write",
+            "Mem_Read",
+            "Mem_Write",
+            "NvM_ReadBlock",
+            "NvM_WriteBlock",
+            "NvM_ReadPRAMBlock",
+            "NvM_WritePRAMBlock",
+            "ReadPeripheral8",
+            "ReadPeripheral16",
+            "ReadPeripheral32",
+            "WritePeripheral8",
+            "WritePeripheral16",
+            "WritePeripheral32",
+            "IocWrite_IocId_SenderId",
+            "IocWriteGroup_IocId",
+            "IocRead_IocId_ReceiverId",
+            "IocReadGroup_IocId",
+            "SoAd_ReadDhcpHostNameOption",
+            "SoAd_WriteDhcpHostNameOption",
+            "SoAd_IsConnectionReady",
+            "NvM_ReadPRAMBlock",
+            "Xxx_ReadDataLength",
+            "Xxx_ConditionCheckRead",
+            "Rte_Rips_PlugIn_Read_SwcBswIPartition_ExE_CGI",
+            "Rte_Rips_PlugIn_Write_SwcBswIPartition_ExE_CGI",
+            "NvM_WritePRAMBlock",
+            "Xxx_ReadDataLength",
+            "Xxx_ReadData",
+            "Xxx_WriteData",
+            "Spi_WriteIB",
+            "Spi_ReadIB",
+            "TcpIp_DhcpReadOption",
+            "TcpIp_DhcpV6ReadOption",
+            "TcpIp_DhcpWriteOption",
+            "TcpIp_DhcpV6WriteOption",
+            "WEth_WriteTrcvRegs",
+            "WEth_ReadTrcvRegs"
+        ]
+
+    def start(self):
+        with open_index(bv, "AUTOSAR Functions to investigate (Read/Write operations)") as index:
+            func_len = len(list(self.bv.functions))
+            f_count = 0
+            for func in self.bv.functions:
+                notify_progress(f_count, func_len, 'Marking functions for investigation ...')
+                if func.name in self.func_list:
+                    index.add_entry(func, {})
+                f_count += 1
+
+
 
 #if interaction.show_message_box("Load AUTOSAR types?",f"Would you like to add AUTOSAR Classic types?",MessageBoxButtonSet.YesNoButtonSet) == 1:
 #
-match interaction.get_choice_input("What should I do?", "AUTOSAR Helper", ["Load AUTOSAR Types", "Scan for error handling", "Set current function as 'Det_ReportError'"]):
+match interaction.get_choice_input("What should I do?", "AUTOSAR Helper", ["Load AUTOSAR Types", "Scan for error handling", "Set current function as 'Det_ReportError'","Mark all Read/Write Functions"]):
     case 0:
         print("[AUTOSAR Helper] Loading AUTOSAR types - START")
         type_helper = PopulateASClassicTypes(bv)
@@ -353,5 +479,11 @@ match interaction.get_choice_input("What should I do?", "AUTOSAR Helper", ["Load
         rename_helper.start()
         print(f"[AUTOSAR Helper] Setting function at {hex(current_function.start)} as 'Det_ReportError' - DONE")
         print(f"[AUTOSAR Helper] Note: If there are some functions that were not renamed, re-run this operation again :)")
+    case 3:
+        print(f"[AUTOSAR Helper] Marking all functions that perform Read/Write operations - START")
+        mark_funcs = MarkReadWriteFuncs(bv)
+        mark_funcs.start()
+        print(f"[AUTOSAR Helper] Marking all functions that perform Read/Write operations - DONE")
+        print(f"[AUTOSAR Helper] Results are in index: 'AUTOSAR Functions to investigate (Read/Write operations)'")
     case _:
         print("[AUTOSAR Helper] No choice selected.")
