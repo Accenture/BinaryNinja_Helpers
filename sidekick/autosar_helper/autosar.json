@@ -3008,7 +3008,7 @@
             },
             "113": {
                 "name": "Xxx_RequestResults",
-                "type": "Std_ReturnType Xxx_RequestResults (Dcm_OpStatusType OpStatus,[DcmDspRoutineSignalType* dataIn_1, ___DcmDspRoutineSignalType* dataIn_n],[const uint8* dataInVar],[DcmDspRoutineSignalType* dataOut_1, ___DcmDspRoutineSignalType* dataOut_n],[uint8* dataOutVar],[uint16* variableDataLength],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_RequestResults (Dcm_OpStatusType OpStatus,DcmDspRoutineSignalType* dataIn_1, ___DcmDspRoutineSignalType* dataIn_n,const uint8* dataInVar,DcmDspRoutineSignalType* dataOut_1, ___DcmDspRoutineSignalType* dataOut_n,uint8* dataOutVar,uint16* variableDataLength,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application the result of a routine execution."
             },
             "54": {
@@ -3043,22 +3043,22 @@
             },
             "79": {
                 "name": "Xxx_ReturnControlToECU",
-                "type": "Std_ReturnType Xxx_ReturnControlToECU ([Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_ReturnControlToECU (Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to return control to ECU of an IO Control."
             },
             "77": {
                 "name": "Xxx_ResetToDefault",
-                "type": "Std_ReturnType Xxx_ResetToDefault ([Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_ResetToDefault (Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to reset an IO Control to default value."
             },
             "60": {
                 "name": "Xxx_ResetToDefault",
-                "type": "Std_ReturnType Xxx_ResetToDefault (Dcm_OpStatusType OpStatus,[Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_ResetToDefault (Dcm_OpStatusType OpStatus,Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to reset an IO Control to default value."
             },
             "74": {
                 "name": "Xxx_FreezeCurrentState",
-                "type": "Std_ReturnType Xxx_FreezeCurrentState ([Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_FreezeCurrentState (Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to freeze the current state of an IO Control."
             },
             "119": {
@@ -3068,17 +3068,17 @@
             },
             "132": {
                 "name": "Xxx_FreezeCurrentState",
-                "type": "Std_ReturnType Xxx_FreezeCurrentState (Dcm_OpStatusType OpStatus,[Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_FreezeCurrentState (Dcm_OpStatusType OpStatus,Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to freeze the current state of an IO Control."
             },
             "80": {
                 "name": "Xxx_ShortTermAdjustment",
-                "type": "Std_ReturnType Xxx_ShortTermAdjustment (const uint8* ControlStateInfo,[uint16 DataLength],[Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_ShortTermAdjustment (const uint8* ControlStateInfo,uint16 DataLength,Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to adjust the IO signal."
             },
             "85": {
                 "name": "Xxx_ShortTermAdjustment",
-                "type": "Std_ReturnType Xxx_ShortTermAdjustment (const uint8* ControlStateInfo,[uint16 DataLength],Dcm_OpStatusType OpStatus,[Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_ShortTermAdjustment (const uint8* ControlStateInfo,uint16 DataLength,Dcm_OpStatusType OpStatus,Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to adjust the IO signal."
             },
             "131": {
@@ -3108,7 +3108,7 @@
             },
             "91": {
                 "name": "Xxx_Start",
-                "type": "Std_ReturnType Xxx_Start ([DcmDspRoutineSignalType dataIn_1, ___DcmDspRoutineSignalType dataIn_n],[const uint8* dataInVar],Dcm_OpStatusType OpStatus,[DcmDspRoutineSignalType dataOut_1, ___DcmDspRoutineSignalType dataOut_n],[uint8* dataOutVar],[uint16* currentDataLength],Dcm_NegativeResponseCodeType ErrorCode)",
+                "type": "Std_ReturnType Xxx_Start (DcmDspRoutineSignalType dataIn_1, ___DcmDspRoutineSignalType dataIn_n,const uint8* dataInVar,Dcm_OpStatusType OpStatus,DcmDspRoutineSignalType dataOut_1, ___DcmDspRoutineSignalType dataOut_n,uint8* dataOutVar,uint16* currentDataLength,Dcm_NegativeResponseCodeType ErrorCode)",
                 "comments": "This function requests to the application to start the execution of a routine."
             },
             "128": {
@@ -3118,7 +3118,7 @@
             },
             "92": {
                 "name": "Xxx_Stop",
-                "type": "Std_ReturnType Xxx_Stop ([DcmDspRoutineSignalType dataIn_1, ___DcmDspRoutineSignalType dataIn_n],[const uint8* dataInVar],[DcmDspRoutineSignalType dataOut_1, ___DcmDspRoutineSignalType dataOut_n],[uint8* dataOutVar],[uint16* currentDataLength],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_Stop (DcmDspRoutineSignalType dataIn_1, ___DcmDspRoutineSignalType dataIn_n,const uint8* dataInVar,DcmDspRoutineSignalType dataOut_1, ___DcmDspRoutineSignalType dataOut_n,uint8* dataOutVar,uint16* currentDataLength,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests to the application to stop the execution of a routine."
             },
             "129": {
@@ -3380,7 +3380,7 @@
             "19": {
                 "name": "Dem_SetDTCFilter",
                 "type": "Std_ReturnType Dem_SetDTCFilter (uint8 ClientId,uint8 DTCStatusMask,Dem_DTCFormatType DTCFormat,Dem_DTCOriginType DTCOrigin,boolean FilterWithSeverity,Dem_DTCSeverityType DTCSeverityMask,boolean FilterForFaultDetectionCounter)",
-                "comments": "Sets the DTC Filter. The server shall perform a bit-wise logical AND-ing operation between the parameter DTC Status Mask and the current UDS status in the server. In addition to the DTC Status Availability Mask, the server shall return all DTCs for which the result of the AND-ing operation is non-zero [i.e. (status Of DTC & DTC Status Mask) != 0]. The server shall process only the DTC Status bits that it is supporting. OBD Events Suppression shall be ignored for this computation. If no DTCs within the server match the masking criteria specified in the client\u2019s request, no DTC or status information shall be provided following the DTC Status Availability Mask byte in the positive response message (((status Of DTC & DTC Status Mask) != 0) && ((severity & DTC Severity Mask) != 0)) == TRUE."
+                "comments": "Sets the DTC Filter. The server shall perform a bit-wise logical AND-ing operation between the parameter DTC Status Mask and the current UDS status in the server. In addition to the DTC Status Availability Mask, the server shall return all DTCs for which the result of the AND-ing operation is non-zero i.e. (status Of DTC & DTC Status Mask) != 0. The server shall process only the DTC Status bits that it is supporting. OBD Events Suppression shall be ignored for this computation. If no DTCs within the server match the masking criteria specified in the client\u2019s request, no DTC or status information shall be provided following the DTC Status Availability Mask byte in the positive response message (((status Of DTC & DTC Status Mask) != 0) && ((severity & DTC Severity Mask) != 0)) == TRUE."
             },
             "23": {
                 "name": "Dem_GetNumberOfFilteredDTC",
@@ -4063,12 +4063,12 @@
         "functions": {
             "3": {
                 "name": "E2EXf_transformerId",
-                "type": "uint8 E2EXf_transformerId ([Std_TransformerForwardCode forwardedCode],[Std_ExtractProtocolHeaderFieldsType extractProtocolHeaderFields],[const E2EXf_CSTransactionHandleType* csTransactionHandle],uint8* buffer,uint32* bufferLength,[const uint8* inputBuffer],uint32 inputBufferLength)",
+                "type": "uint8 E2EXf_transformerId (Std_TransformerForwardCode forwardedCode,Std_ExtractProtocolHeaderFieldsType extractProtocolHeaderFields,const E2EXf_CSTransactionHandleType* csTransactionHandle,uint8* buffer,uint32* bufferLength,const uint8* inputBuffer,uint32 inputBufferLength)",
                 "comments": "Protects the array/buffer to be transmitted, using the in-place transformation."
             },
             "4": {
                 "name": "E2EXf_Inv_transformerId",
-                "type": "uint8 E2EXf_Inv_transformerId ([Std_ExtractProtocolHeaderFieldsType extractProtocolHeaderFields],[E2EXf_CSTransactionHandleType* csTransactionHandle],uint8* buffer,uint32* bufferLength,[const uint8* inputBuffer],uint32 inputBufferLength)",
+                "type": "uint8 E2EXf_Inv_transformerId (Std_ExtractProtocolHeaderFieldsType extractProtocolHeaderFields,E2EXf_CSTransactionHandleType* csTransactionHandle,uint8* buffer,uint32* bufferLength,const uint8* inputBuffer,uint32 inputBufferLength)",
                 "comments": "Check the received data. If the data can be used by the caller, then the function returns E_OK."
             },
             "1": {
@@ -4543,7 +4543,7 @@
             "30": {
                 "name": "Eth_GetSpiStatus",
                 "type": "Std_ReturnType Eth_GetSpiStatus (uint8 CtrlIdx,Eth_SpiStatusType* SpiStatusType)",
-                "comments": "Returns the status defined by OATC6 [26] to identify if an error can occur at the SPI interface. Tags: atp.Status = draft"
+                "comments": "Returns the status defined by OATC6 26 to identify if an error can occur at the SPI interface. Tags: atp.Status = draft"
             },
             "22": {
                 "name": "Eth_GetCurrentTime",
@@ -6378,7 +6378,7 @@
             "39": {
                 "name": "Fr_GetNumOfStartupFrames",
                 "type": "Std_ReturnType Fr_GetNumOfStartupFrames (uint8 Fr_CtrlIdx,uint8* Fr_NumOfStartupFramesPtr)",
-                "comments": "Gets the current number of startup frames seen on the cluster. See variable vStartupPairs of [12] for details."
+                "comments": "Gets the current number of startup frames seen on the cluster. See variable vStartupPairs of 12 for details."
             },
             "40": {
                 "name": "Fr_GetChannelStatus",
@@ -6388,12 +6388,12 @@
             "41": {
                 "name": "Fr_GetClockCorrection",
                 "type": "Std_ReturnType Fr_GetClockCorrection (uint8 Fr_CtrlIdx,sint16* Fr_RateCorrectionPtr,sint32* Fr_OffsetCorrectionPtr)",
-                "comments": "Gets the current clock correction values. See variables vInterimRateCorrection and vInterimOffsetCorrection of [12] for details."
+                "comments": "Gets the current clock correction values. See variables vInterimRateCorrection and vInterimOffsetCorrection of 12 for details."
             },
             "42": {
                 "name": "Fr_GetSyncFrameList",
                 "type": "Std_ReturnType Fr_GetSyncFrameList (uint8 Fr_CtrlIdx,uint8 Fr_ListSize,uint16* Fr_ChannelAEvenListPtr,uint16* Fr_ChannelBEvenListPtr,uint16* Fr_ChannelAOddListPtr,uint16* Fr_ChannelBOddListPtr)",
-                "comments": "Gets a list of sync frames received or transmitted on channel A and channel B via the even and odd communication cycle. See variables vsSyncIdListA and vsSyncIdListB of [12] for details."
+                "comments": "Gets a list of sync frames received or transmitted on channel A and channel B via the even and odd communication cycle. See variables vsSyncIdListA and vsSyncIdListB of 12 for details."
             },
             "43": {
                 "name": "Fr_GetWakeupRxStatus",
@@ -6599,7 +6599,7 @@
             "52": {
                 "name": "FrIf_GetNumOfStartupFrames",
                 "type": "Std_ReturnType FrIf_GetNumOfStartupFrames (uint8 FrIf_CtrlIdx,uint8* FrIf_NumOfStartupFramesPtr)",
-                "comments": "Wraps the FlexRay Driver API function Fr_GetNumOfStartupFrames and gets a list of the current number of startup frames seen on the cluster. See variable vStartupPairs of [12] for details."
+                "comments": "Wraps the FlexRay Driver API function Fr_GetNumOfStartupFrames and gets a list of the current number of startup frames seen on the cluster. See variable vStartupPairs of 12 for details."
             },
             "43": {
                 "name": "FrIf_GetWakeupRxStatus",
@@ -6953,7 +6953,7 @@
             "8": {
                 "name": "FrTrcv_GetTransceiverError",
                 "type": "Std_ReturnType FrTrcv_GetTransceiverError (uint8 FrTrcv_TrcvIdx,uint8 FrTrcv_BranchIdx,uint32* FrTrcv_BusErrorState)",
-                "comments": "All mandatory errors defined by the FlexRay EPL [5] which are supported by the FlexRay transceiver hardware can be accessed via this API: In addition to errors on the physical layer and local to the ECU hardware, a global error flag is provided."
+                "comments": "All mandatory errors defined by the FlexRay EPL 5 which are supported by the FlexRay transceiver hardware can be accessed via this API: In addition to errors on the physical layer and local to the ECU hardware, a global error flag is provided."
             },
             "15": {
                 "name": "FrTrcv_DisableTransceiverBranch",
@@ -7606,7 +7606,7 @@
             },
             "14": {
                 "name": "KeyM_VerifyCertificateChain",
-                "type": "Std_ReturnType KeyM_VerifyCertificateChain (KeyM_CertificateIdType CertId,const KeyM_CertDataType[] certChainData,uint8 NumberOfCertificates)",
+                "type": "Std_ReturnType KeyM_VerifyCertificateChain (KeyM_CertificateIdType CertId,const KeyM_CertDataType certChainData,uint8 NumberOfCertificates)",
                 "comments": "This function performs a certificate verification against a list of certificates. It is a pre-requisite that the certificate that shall be checked has already been written with KeyM_SetCertificate() and that the root certificate is either in the list or is already assigned to one of the other certificates."
             },
             "15": {
@@ -9070,43 +9070,43 @@
                 "comments": "This API returns a boolean value which indicates if the OS was already started. In case of multi-core, it shall check if StartOs was already called on the core where isOsStarted was called. If the OS was (locally) started it returns true; otherwise, false. The function is intended to be implemented as a macro. The function is by nature also callable before StartOs, but assumes a valid and initialized C environment (e.g. main() was called before the use of isOsStarted). Tags: atp. Status = draft."
             },
             "30": {
-                "name": "IocSend_IocId[_SenderId]",
-                "type": "Std_ReturnType IocSend_IocId[_SenderId] (Data IN,[uint16 numberOfBytesIN])",
+                "name": "IocSend_IocId_SenderId",
+                "type": "Std_ReturnType IocSend_IocId_SenderId (Data IN,uint16 numberOfBytesIN)",
                 "comments": "Performs an \"explicit\" sender-receiver transmission of data elements with \"event\" semantic for a unidirectional 1:1 or N:1 communication between OS-Applications located on the same or on different cores. <IocId> is a unique identifier that references a unidirectional 1:1 or N:1 communication. <SenderId> is used only in N:1 communication. Together with <IocId>, it uniquely identifies the sender. It is separated from <IocId> with an underscore. In case of 1:1 communication, it shall be omitted."
             },
             "31": {
-                "name": "IocWrite_IocId[_SenderId]",
-                "type": "Std_ReturnType IocWrite_IocId[_SenderId] (Data IN,[uint16 numberOfBytesIN])",
+                "name": "IocWrite_IocId_SenderId",
+                "type": "Std_ReturnType IocWrite_IocId_SenderId (Data IN,uint16 numberOfBytesIN)",
                 "comments": "Performs an \"explicit\" sender-receiver transmission of data elements with \"data\" semantic for a unidirectional 1:1 or N:1 communication between OS-Applications located on the same or on different cores. <IocId> is a unique identifier that references a unidirectional 1:1 or N:1 communication. <SenderId> is used only in N:1 communication. Together with <IocId>, it uniquely identifies the sender. It is separated from <IocId> with an underscore. In case of 1:1 communication, it shall be omitted. <numberOfBytesIN> specifies the size of the data to be transmitted (in bytes)."
             },
             "32": {
                 "name": "IocSendGroup_IocId",
-                "type": "Std_ReturnType IocSendGroup_IocId (Data1 IN1,[uint16 numberOfBytesIN1],Data2 IN2,[uint16 numberOfBytesIN2],___)",
+                "type": "Std_ReturnType IocSendGroup_IocId (Data1 IN1,uint16 numberOfBytesIN1,Data2 IN2,uint16 numberOfBytesIN2,___)",
                 "comments": "Performs an \"explicit\" sender-receiver transmission of data elements with \"event\" semantic for a unidirectional 1:1 communication between OS-Applications located on the same or on different cores. This API involves a group of data elements whose values are specified in parameter. <IocId> is a unique identifier that references a unidirectional 1:1 communication involving many data elements. The optional parameter <numberOfBytesIN<x>> specifies the size of the data to be transmitted (in bytes) for parameter <IN<x>>."
             },
             "33": {
                 "name": "IocWriteGroup_IocId",
-                "type": "Std_ReturnType IocWriteGroup_IocId (Data1 IN1,[uint16 numberOfBytesIN1],Data2 IN2,[uint16 numberOfBytesIN2],___)",
+                "type": "Std_ReturnType IocWriteGroup_IocId (Data1 IN1,uint16 numberOfBytesIN1,Data2 IN2,uint16 numberOfBytesIN2,___)",
                 "comments": "Performs an \"explicit\" sender-receiver transmission of data elements with \"data\" semantic for a unidirectional 1:1 communication between OS-Applications located on the same or on different cores. This API involves a group of data elements whose values are specified in parameter. <IocId> is a unique identifier that references a unidirectional 1:1 communication involving many data elements. The optional parameter <numberOfBytesIN<x>> specifies the size of the data to be transmitted (in bytes) for parameter <IN<x>>."
             },
             "34": {
                 "name": "IocReceive_IocId",
-                "type": "Std_ReturnType IocReceive_IocId (Data OUT,[uint16* numberOfBytesOUT])",
+                "type": "Std_ReturnType IocReceive_IocId (Data OUT,uint16* numberOfBytesOUT)",
                 "comments": "Performs an \"explicit\" sender-receiver reception of data elements with \"event\" semantic for a unidirectional communication between OS-Applications located on the same or on different cores. <IocId> is a unique identifier that references a unidirectional 1:1 or N:1 communication."
             },
             "35": {
-                "name": "IocRead_IocId[_ReceiverId]",
-                "type": "Std_ReturnType IocRead_IocId[_ReceiverId] (Data OUT,[uint16* numberOfBytesOUT])",
+                "name": "IocRead_IocId_ReceiverId",
+                "type": "Std_ReturnType IocRead_IocId_ReceiverId (Data OUT,uint16* numberOfBytesOUT)",
                 "comments": "Performs an \"explicit\" sender-receiver reception of data elements with \"data\" semantic for a unidirectional communication between OS-Applications located on the same or on different cores. <IocId> is a unique identifier that references a unidirectional 1:1 or N:1 communication. <ReceiverId> is used only in N:M communication. Together with <IocId>, it uniquely identifies the receiver. It is separated from <IocId> with an underscore. If communication is different from N:M, it shall be omitted."
             },
             "36": {
                 "name": "IocReceiveGroup_IocId",
-                "type": "Std_ReturnType IocReceiveGroup_IocId (Data1 OUT1,[uint16* numberOfBytesOUT1],Data2 OUT2,[uint16* numberOfBytesOUT2],___)",
+                "type": "Std_ReturnType IocReceiveGroup_IocId (Data1 OUT1,uint16* numberOfBytesOUT1,Data2 OUT2,uint16* numberOfBytesOUT2,___)",
                 "comments": "Performs an \"explicit\" sender-receiver transmission of data elements with \"event\" semantic for a unidirectional 1:1 communication between OS-Applications located on the same or on different cores. This API involves a group of data elements whose values are specified in the parameter. <IocId> is a unique identifier that references a unidirectional 1:1 communication involving many data elements."
             },
             "37": {
                 "name": "IocReadGroup_IocId",
-                "type": "Std_ReturnType IocReadGroup_IocId (Data1 OUT1,[uint16* numberOfBytesOUT1],Data2 OUT2,[uint16* numberOfBytesOUT2],___)",
+                "type": "Std_ReturnType IocReadGroup_IocId (Data1 OUT1,uint16* numberOfBytesOUT1,Data2 OUT2,uint16* numberOfBytesOUT2,___)",
                 "comments": "Performs an \"explicit\" sender-receiver transmission of data elements with a \"data\" semantic for a unidirectional 1:1 communication between OS-Applications located on the same or on different cores. This API involves a group of data elements whose values are specified in parameter. <IocId> is a unique identifier that references a unidirectional 1:1 communication involving many data elements."
             },
             "38": {
@@ -10208,7 +10208,7 @@
             },
             "60": {
                 "name": "Xxx_ResetToDefault",
-                "type": "Std_ReturnType Xxx_ResetToDefault (Dcm_OpStatusType OpStatus,[Dcm_ControlMask__DIDType controlMask],[uint8* controlMask],Dcm_NegativeResponseCodeType* ErrorCode)",
+                "type": "Std_ReturnType Xxx_ResetToDefault (Dcm_OpStatusType OpStatus,Dcm_ControlMask__DIDType controlMask,uint8* controlMask,Dcm_NegativeResponseCodeType* ErrorCode)",
                 "comments": "This function requests the application to reset an IO Control to default value."
             },
             "61": {
@@ -10272,8 +10272,8 @@
                 "comments": "The Rte_Rips_DataIsUpdated API provides access to the update flag for an explicit receiver."
             },
             "255": {
-                "name": "Rte_Rips_PlugIn_DRead_SwcBswI[Partition][_ExE]_CGI",
-                "type": "return Rte_Rips_PlugIn_DRead_SwcBswI[Partition][_ExE]_CGI (void)",
+                "name": "Rte_Rips_PlugIn_DRead_SwcBswIPartition_ExE_CGI",
+                "type": "return Rte_Rips_PlugIn_DRead_SwcBswIPartition_ExE_CGI (void)",
                 "comments": "Rte_Rips_DReadPerform \"an explicit\" read on a sender-receiver communication data element typed by a primitive data type."
             },
             "181": {
@@ -10288,7 +10288,7 @@
             },
             "236": {
                 "name": "Rte_Rips_PlugIn_Invoke_SwcBswI_CGI",
-                "type": "Std_ReturnType Rte_Rips_PlugIn_Invoke_SwcBswI_CGI ([IN|IN/OUT|OUT] data_1,[IN|IN/OUT|OUT] ___,[IN|IN/OUT|OUT] data_n,[Std_TransformerError transformerError])",
+                "type": "Std_ReturnType Rte_Rips_PlugIn_Invoke_SwcBswI_CGI (IN|IN/OUT|OUT data_1,IN|IN/OUT|OUT ___,IN|IN/OUT|OUT data_n,Std_TransformerError transformerError)",
                 "comments": "Rte_Rips_Invoke performs a transformer or cross-cluster invocation for clients or trigger sources."
             },
             "238": {
@@ -10302,13 +10302,13 @@
                 "comments": "The Rte_Rips_PrmAPI provides access to a parameter provided by another Software Cluster."
             },
             "234": {
-                "name": "Rte_Rips_PlugIn_Read_[SwcBswI][Partition][_ExE]_CGI",
-                "type": "Std_ReturnType Rte_Rips_PlugIn_Read_[SwcBswI][Partition][_ExE]_CGI (OUT data,[Std_TransformerError transformerError])",
+                "name": "Rte_Rips_PlugIn_Read_SwcBswIPartition_ExE_CGI",
+                "type": "Std_ReturnType Rte_Rips_PlugIn_Read_SwcBswIPartition_ExE_CGI (OUT data,Std_TransformerError transformerError)",
                 "comments": "Rte_Rips_ReadPerform is an \"explicit\" read on a sender-receiver communication data element."
             },
             "237": {
                 "name": "Rte_Rips_PlugIn_ReturnResult_SwcBswI_CGI",
-                "type": "Std_ReturnType Rte_Rips_PlugIn_ReturnResult_SwcBswI_CGI ([IN/OUT|OUT] param_1,[IN/OUT|OUT] param_n,[Std_TransformerError transformerError])",
+                "type": "Std_ReturnType Rte_Rips_PlugIn_ReturnResult_SwcBswI_CGI (IN/OUT|OUT param_1,IN/OUT|OUT param_n,Std_TransformerError transformerError)",
                 "comments": "Rte_Rips_ReturnResult get the server results of a performed at transformer or cross cluster invocation for clients."
             },
             "241": {
@@ -10347,8 +10347,8 @@
                 "comments": "Rte_Rips_Trigger notifies the RTE Implementation Plug-In about a raised trigger."
             },
             "235": {
-                "name": "Rte_Rips_PlugIn_Write_[SwcBswI][Partition][_ExE]_CGI",
-                "type": "Std_ReturnType Rte_Rips_PlugIn_Write_[SwcBswI][Partition][_ExE]_CGI (IN data,[Std_TransformerError transformerError])",
+                "name": "Rte_Rips_PlugIn_Write_SwcBswIPartition_ExE_CGI",
+                "type": "Std_ReturnType Rte_Rips_PlugIn_Write_SwcBswIPartition_ExE_CGI (IN data,Std_TransformerError transformerError)",
                 "comments": "Rte_Rips_WritePerforms an \"explicit\" write on a sender-receiver communication data element."
             },
             "9": {
@@ -10883,7 +10883,7 @@
             "28": {
                 "name": "StbM_TriggerTimeTransmission",
                 "type": "Std_ReturnType_StbM StbM_TriggerTimeTransmission (StbM_SynchronizedTimeBaseType timeBaseId)",
-                "comments": "Called by the <UpperLayer> to force the Time sync Modules to transmit the current Time Base again due to an incremented time Base Update Counter [timeBaseId]"
+                "comments": "Called by the <UpperLayer> to force the Time sync Modules to transmit the current Time Base again due to an incremented time Base Update Counter timeBaseId"
             },
             "27": {
                 "name": "StbM_GetTimeBaseUpdateCounter",
