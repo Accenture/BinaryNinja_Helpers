@@ -10273,7 +10273,7 @@
             },
             "255": {
                 "name": "Rte_Rips_PlugIn_DRead_SwcBswIPartition_ExE_CGI",
-                "type": "return Rte_Rips_PlugIn_DRead_SwcBswIPartition_ExE_CGI (void)",
+                "type": "Std_ReturnType Rte_Rips_PlugIn_DRead_SwcBswIPartition_ExE_CGI (void)",
                 "comments": "Rte_Rips_DReadPerform \"an explicit\" read on a sender-receiver communication data element typed by a primitive data type."
             },
             "181": {
@@ -10298,7 +10298,7 @@
             },
             "256": {
                 "name": "Rte_Rips_PlugIn_Prm_CGI",
-                "type": "return Rte_Rips_PlugIn_Prm_CGI (void)",
+                "type": "Std_ReturnType Rte_Rips_PlugIn_Prm_CGI (void)",
                 "comments": "The Rte_Rips_PrmAPI provides access to a parameter provided by another Software Cluster."
             },
             "234": {
