@@ -3,7 +3,7 @@ import re
 #from binaryninja import *
 
 
-DEBUG = True
+DEBUG = False
 
 def guess_brand(pdf_file):
     with pdfplumber.open(pdf_file) as pdf:
@@ -142,8 +142,8 @@ def add_sections(sections_array):
         bv.add_user_segment(section["start"],section["end"] - section["start"],0,0,enums.SegmentFlag.SegmentWritable | enums.SegmentFlag.SegmentReadable)
         bv.add_user_section(section["name"],section["start"],section["end"] - section["start"])
 
-pdf_file_path = "/tmp/rh850.pdf"
-#pdf_file_path = interaction.get_open_filename_input("Select PDF file", "*.pdf")
+#pdf_file_path = "/tmp/rh850.pdf"
+pdf_file_path = interaction.get_open_filename_input("Select PDF file", "*.pdf")
 match guess_brand(pdf_file_path):
     case "Infineon":
         extract_infineon_pdf(pdf_file_path)
