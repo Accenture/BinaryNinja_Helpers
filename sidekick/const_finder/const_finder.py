@@ -61,7 +61,7 @@ def find_constants_in_function(func, constants):
     return found_constants
 
 mtf = interaction.MultilineTextField("Provide dictionary with constants:")
-tlf = interaction.MultilineTextField("Name of the index:")
+tlf = interaction.TextLineField("Name of the index:")
 if interaction.get_form_input([tlf,mtf],"Const Finder"):
     constants_to_look_for = eval(mtf.result)
     if tlf.result:
