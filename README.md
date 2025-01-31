@@ -11,6 +11,7 @@ This is a collection of scripts that can be used with snippets and sidekick plug
 * [Const Finder](./sidekick/const_finder/) - Indexer that can be used to find constants in the HLIL representation that match specified criteria.
 * [Find Base](./sidekick/find_base/) - Script that attempts to find the base of the MCU firmware. 
 * [Function Finder](./sidekick/function_finder/) - Is useful when you suspect that a lot of actual code was not detected by the analysis. This will try to find cross-references to the current function in the binary that are not associated with a function. Rare, but sometimes useful.
+* [Indirect Calls](./sidekick/indirect_calls/) - Identifies indirect calls only in current function.
 * [Kernel Symbols Import](./sidekick/kernel_symbols/) - Imports symbols from the `kallsyms` file.
 * [Make Function Pointers](./sidekick/make_function_pointers/) - Finds all hardcoded XREFs in the selected segment that may lead to functions.
 * [PDF to Memmap](./sidekick/pdf_to_memmap/) - Parser for PDF files to extract memory map from datasheet/reference manuals.
