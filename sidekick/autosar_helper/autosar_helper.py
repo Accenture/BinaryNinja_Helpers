@@ -96,7 +96,8 @@ class MarkErrorHandlingFunc():
                 self.autosar_functions = json.loads(result.text)
                 self.rename_functions()
                 return
-        except:
+        except Exception as e:
+            print(e)
             print("Error retrieving the AUTOSAR metadata from online source!")
         try:
             self.autosar_functions = json.load(open(interaction.get_open_filename_input("Select file with AUTOSAR metadata:"),"r"))
@@ -131,7 +132,7 @@ class MarkErrorHandlingFunc():
             except (exceptions.ILException, AssertionError, IndexError):
                 log_warn(f"[AUTOSAR Helper] Got IL Exception for {hex(call_insn.address)}. You may want to force the analysis for this function.")
             except Exception as e:
-                print(f"Compeltely different error: {e}")
+                print(f"Unexpected error: {e}")
             if call_params:
                 if str(call_params[MODULE_ID_INDEX].value.value) in self.autosar_functions:
                     # Module exists
@@ -144,7 +145,7 @@ class MarkErrorHandlingFunc():
                         try:
                             func_to_rename.set_user_type(self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['type'])
                         except:
-                            print(f"[AUTOSAR Helper] FAILED TO APPLY TYPE FOR: {func_to_rename.name} at {hex(func_to_rename.start)} ({self.current_top['matches'][call_insn.address]['matched_func']['type']})")
+                            print(f"[AUTOSAR Helper] FAILED TO APPLY TYPE FOR: {func_to_rename.name} at {hex(func_to_rename.start)} ({self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['type']})")
                     else:
                         for func_to_rename in self.bv.get_functions_containing(call_insn.address):
                             func_to_rename.name = f"{self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]['short_name']}_func_{hex(call_params[SERVICE_ID_INDEX].value.value)}"
@@ -213,7 +214,8 @@ class AutoFindErrorHandling():
                 if self.current_top and rename:
                     self.rename_functions()
                 return
-        except:
+        except Exception as e:
+            print(e)
             print("Error retrieving the AUTOSAR metadata from online source!")
         try:
             self.autosar_functions = json.load(open(interaction.get_open_filename_input("Select file with AUTOSAR metadata:"),"r"))
