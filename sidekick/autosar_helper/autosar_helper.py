@@ -145,7 +145,8 @@ class MarkErrorHandlingFunc():
                         try:
                             func_to_rename.set_user_type(self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['type'])
                         except:
-                            print(f"[AUTOSAR Helper] FAILED TO APPLY TYPE FOR: {func_to_rename.name} at {hex(func_to_rename.start)} ({self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['type']})")
+                            afuncs = self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]["functions"][str(call_params[SERVICE_ID_INDEX].value.value)]['type']
+                            print(f"[AUTOSAR Helper] FAILED TO APPLY TYPE FOR: {func_to_rename.name} at {hex(func_to_rename.start)} ({afuncs})")
                     else:
                         for func_to_rename in self.bv.get_functions_containing(call_insn.address):
                             func_to_rename.name = f"{self.autosar_functions[str(call_params[MODULE_ID_INDEX].value.value)]['short_name']}_func_{hex(call_params[SERVICE_ID_INDEX].value.value)}"
