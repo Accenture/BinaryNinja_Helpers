@@ -1,0 +1,26 @@
+{
+    "UDS/TCP/ICMP": {
+        0x01: {
+            "type_of_use": ANY,
+            "direct_use_only": True
+        },
+        0x06: {
+            "type_of_use": ANY,
+            "direct_use_only": True
+        },
+        0x11: {
+            "type_of_use": ANY,
+            "direct_use_only": True
+        }
+    },
+	"IP/ARP": {
+        0x800: {
+            "type_of_use": ANY,
+            "direct_use_only": True
+        },
+        0x806: {
+            "type_of_use": ANY,
+            "direct_use_only": True
+        }
+    }
+}
