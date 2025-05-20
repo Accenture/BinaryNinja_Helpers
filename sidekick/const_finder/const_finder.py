@@ -53,11 +53,12 @@ def check_constant_use(insn, constant, type_of_use,direct_only):
 
 def find_constants_in_function(func, constants):
     found_constants = set()
-    for block in func.hlil.basic_blocks:
-        for insn in block:
-            for const, details in constants.items():
-                if check_constant_use(insn, const, details["type_of_use"],details["direct_use_only"]):
-                    found_constants.add(hex(const))
+    if func.hlil:
+        for block in func.hlil.basic_blocks:
+            for insn in block:
+                for const, details in constants.items():
+                    if check_constant_use(insn, const, details["type_of_use"],details["direct_use_only"]):
+                        found_constants.add(hex(const))
     return found_constants
 
 mtf = interaction.MultilineTextField("Provide dictionary with constants:")
