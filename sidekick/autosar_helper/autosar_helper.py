@@ -108,9 +108,10 @@ class MarkErrorHandlingFunc():
 
     def find_call_insn(self,call_insn,func_name):
         func_to_scan = self.bv.get_functions_containing(call_insn.address)[0]
-        for instruction in func_to_scan.hlil.instructions:
-            if func_name in str(instruction):
-                return instruction
+        if func_to_scan.hlil:
+            for instruction in func_to_scan.hlil.instructions:
+                if func_name in str(instruction):
+                    return instruction
 
     def rename_functions(self):
         f_count = 1
@@ -297,9 +298,10 @@ class AutoFindErrorHandling():
 
     def find_call_insn(self,call_insn,func_name):
         func_to_scan = self.bv.get_functions_containing(call_insn.address)[0]
-        for instruction in func_to_scan.hlil.instructions:
-            if func_name in str(instruction):
-                return instruction
+        if func_to_scan.hlil:
+            for instruction in func_to_scan.hlil.instructions:
+                if func_name in str(instruction):
+                    return instruction
 
     def rename_functions(self):
         f_count = 1
