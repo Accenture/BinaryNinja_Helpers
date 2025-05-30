@@ -611,28 +611,29 @@ with open_index(bv, 'Potential Security Issues') as index:
         except exceptions.ILException:
             #log_warn(f"HLIL not available for function at {func.name}")
             continue
-        for block in func.hlil:
-            for insn in block:
-                if insn.operation == HighLevelILOperation.HLIL_CALL:
-                    for case in case_list:
-                        if str(insn.dest) in case_list[case]:
-                            details = case_list[case][str(insn.dest)]
-                            mark = None
-                            for n_c in details["not_constant"]:
-                                if is_parameter_dynamic(insn,n_c,details["not_constant"][n_c]["multi_parameter"]) and conditions(bv,details["conditions"],insn.params):
-                                    # Not a constant, move on
-                                    if details["not_constant"][n_c]["guard_check"](bv,insn,n_c,details["not_constant"][n_c]["guard_params"],details["not_constant"][n_c]["multi_parameter"]):
-                                        mark = "Low"
-                                    else:
-                                        mark = "High"
-                                elif mark:
-                                    if mark == "High":
-                                        mark = "Low"
-                                    else:
-                                        mark = "Info"
-                            if details["ret_val_check"]:
-                                # Do a check for a return value
-                                is_ret_val_checked(bv,insn)
-                            if mark:
-                                index.add_entry(insn, {"Description": case ,"Priority": mark, "Found At": insn.function.source_function.name})
+        if func.hlil:
+            for block in func.hlil:
+                for insn in block:
+                    if insn.operation == HighLevelILOperation.HLIL_CALL:
+                        for case in case_list:
+                            if str(insn.dest) in case_list[case]:
+                                details = case_list[case][str(insn.dest)]
+                                mark = None
+                                for n_c in details["not_constant"]:
+                                    if is_parameter_dynamic(insn,n_c,details["not_constant"][n_c]["multi_parameter"]) and conditions(bv,details["conditions"],insn.params):
+                                        # Not a constant, move on
+                                        if details["not_constant"][n_c]["guard_check"](bv,insn,n_c,details["not_constant"][n_c]["guard_params"],details["not_constant"][n_c]["multi_parameter"]):
+                                            mark = "Low"
+                                        else:
+                                            mark = "High"
+                                    elif mark:
+                                        if mark == "High":
+                                            mark = "Low"
+                                        else:
+                                            mark = "Info"
+                                if details["ret_val_check"]:
+                                    # Do a check for a return value
+                                    is_ret_val_checked(bv,insn)
+                                if mark:
+                                    index.add_entry(insn, {"Description": case ,"Priority": mark, "Found At": insn.function.source_function.name})
 
